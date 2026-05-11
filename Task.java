@@ -27,16 +27,22 @@ public class Task {
     @Column(nullable = false)
     private LocalDate deadline;
 
-    
+    // ── REPLACED boolean with enum ──
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default
     private TaskStatus status = TaskStatus.PENDING;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 10)
+    @Builder.Default
+    private TaskLevel level = TaskLevel.MEDIUM;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id", nullable = false)
     private User student;
 
+    // ── Helper methods ──
     public boolean isCompleted() {
         return this.status == TaskStatus.COMPLETED;
     }
