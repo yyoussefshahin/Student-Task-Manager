@@ -27,7 +27,7 @@ public class Task {
     @Column(nullable = false)
     private LocalDate deadline;
 
-    // ── REPLACED boolean with enum ──
+   
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     @Builder.Default
@@ -42,7 +42,6 @@ public class Task {
     @JoinColumn(name = "student_id", nullable = false)
     private User student;
 
-    // ── Helper methods ──
     public boolean isCompleted() {
         return this.status == TaskStatus.COMPLETED;
     }
