@@ -37,7 +37,7 @@ public class FeedBackService {
     @Transactional
     public FeedBack replyToFeedback(Long feedbackId, String reply) {
         FeedBack feedback = feedbackRepository.findById(feedbackId)
-        throw new RuntimeException("Feedback not found")
+        .orElseThrow(() -> new RuntimeException("Feedback not found"));
         feedback.setAdminReply(reply); //set reply
         feedback.setRepliedAt(LocalDateTime.now()); //set time
         return feedbackRepository.save(feedback); //save update(reply)
